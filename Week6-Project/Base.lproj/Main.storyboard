@@ -1,24 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gZw-ln-j35">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Content-->
+        <scene sceneID="7Go-yi-nWJ">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Content" id="hGk-dO-OaQ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="lkk-eS-iuz"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6ap-cQ-sHL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="2723.913043478261" y="174.10714285714286"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="KdI-wy-Pw6">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Search" id="BNY-My-uUB" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="ISp-CN-LrI"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QfR-eu-MbU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2728.2608695652175" y="215.625"/>
+        </scene>
+        <!--Calendar-->
+        <scene sceneID="gL9-Xl-sXa">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Calendar" id="umQ-cM-FH8" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="eLi-YE-MOB"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Keb-n9-ihC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2723.913043478261" y="259.15178571428572"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="Ra8-9v-mdF">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Home" id="zUS-Pv-9zw" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="hGv-iU-YLN"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lgJ-MJ-k23" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2723.1884057971015" y="127.90178571428571"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="kTU-cl-KE3">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="gZw-ln-j35" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="k1M-Oo-q0h">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="zUS-Pv-9zw" kind="relationship" relationship="viewControllers" id="U1S-ug-W7O"/>
+                        <segue destination="hGk-dO-OaQ" kind="relationship" relationship="viewControllers" id="cUF-QN-wyz"/>
+                        <segue destination="BNY-My-uUB" kind="relationship" relationship="viewControllers" id="7ZU-IG-GJT"/>
+                        <segue destination="umQ-cM-FH8" kind="relationship" relationship="viewControllers" id="T3F-Go-KcX"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vQ0-JN-AAB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1807" y="198"/>
         </scene>
     </scenes>
 </document>
