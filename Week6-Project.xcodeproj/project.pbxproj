@@ -17,7 +17,6 @@
 		04C0134527301C8500811B2C /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C0134427301C8500811B2C /* AddViewController.swift */; };
 		04C0134727301C9A00811B2C /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C0134627301C9A00811B2C /* CalendarViewController.swift */; };
 		04C0134927301CA800811B2C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C0134827301CA800811B2C /* SearchViewController.swift */; };
-		04C0134B27301CB300811B2C /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C0134A27301CB300811B2C /* SettingViewController.swift */; };
 		04C0134D27301D1E00811B2C /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04C0134C27301D1E00811B2C /* Home.storyboard */; };
 		04C0135127301D7700811B2C /* Content.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04C0135027301D7700811B2C /* Content.storyboard */; };
 		04C0135327301DAA00811B2C /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04C0135227301DAA00811B2C /* Search.storyboard */; };
@@ -33,6 +32,9 @@
 		04C0137927311AE800811B2C /* Extension + Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C0137827311AE800811B2C /* Extension + Home.swift */; };
 		04C013832731323F00811B2C /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C013812731323F00811B2C /* SearchTableViewCell.swift */; };
 		04C013842731323F00811B2C /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04C013822731323F00811B2C /* SearchTableViewCell.xib */; };
+		04C013B12733690600811B2C /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04C013B02733690600811B2C /* Setting.storyboard */; };
+		04C013B32733694F00811B2C /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C013B22733694F00811B2C /* SettingViewController.swift */; };
+		04C013B627336DE000811B2C /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 04C013B527336DE000811B2C /* Zip */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,7 +50,6 @@
 		04C0134427301C8500811B2C /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		04C0134627301C9A00811B2C /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		04C0134827301CA800811B2C /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		04C0134A27301CB300811B2C /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		04C0134C27301D1E00811B2C /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		04C0135027301D7700811B2C /* Content.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Content.storyboard; sourceTree = "<group>"; };
 		04C0135227301DAA00811B2C /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
@@ -64,6 +65,8 @@
 		04C0137827311AE800811B2C /* Extension + Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Home.swift"; sourceTree = "<group>"; };
 		04C013812731323F00811B2C /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		04C013822731323F00811B2C /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
+		04C013B02733690600811B2C /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
+		04C013B22733694F00811B2C /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04C013B627336DE000811B2C /* Zip in Frameworks */,
 				04C013772730CFD100811B2C /* RealmSwift in Frameworks */,
 				04C013752730CFD100811B2C /* Realm in Frameworks */,
 			);
@@ -109,6 +113,7 @@
 				04C013632730B90300811B2C /* Calendar.storyboard */,
 				04C0134C27301D1E00811B2C /* Home.storyboard */,
 				04C0135027301D7700811B2C /* Content.storyboard */,
+				04C013B02733690600811B2C /* Setting.storyboard */,
 				04C0135227301DAA00811B2C /* Search.storyboard */,
 				04C013372730173C00811B2C /* LaunchScreen.storyboard */,
 				04C013352730173C00811B2C /* Assets.xcassets */,
@@ -151,9 +156,9 @@
 				04C0134627301C9A00811B2C /* CalendarViewController.swift */,
 				04C0134427301C8500811B2C /* AddViewController.swift */,
 				04C0134227301C7A00811B2C /* HomeViewController.swift */,
-				04C0134A27301CB300811B2C /* SettingViewController.swift */,
 				04C0134827301CA800811B2C /* SearchViewController.swift */,
 				04C013302730173A00811B2C /* MainViewController.swift */,
+				04C013B22733694F00811B2C /* SettingViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -194,6 +199,7 @@
 			packageProductDependencies = (
 				04C013742730CFD100811B2C /* Realm */,
 				04C013762730CFD100811B2C /* RealmSwift */,
+				04C013B527336DE000811B2C /* Zip */,
 			);
 			productName = "Week6-Project";
 			productReference = 04C013292730173A00811B2C /* Week6-Project.app */;
@@ -226,6 +232,7 @@
 			mainGroup = 04C013202730173A00811B2C;
 			packageReferences = (
 				04C013732730CFD100811B2C /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				04C013B427336DE000811B2C /* XCRemoteSwiftPackageReference "Zip" */,
 			);
 			productRefGroup = 04C0132A2730173A00811B2C /* Products */;
 			projectDirPath = "";
@@ -251,6 +258,7 @@
 				04C0134D27301D1E00811B2C /* Home.storyboard in Resources */,
 				04C0135F27303E1900811B2C /* SpoqaHanSansNeo-Light.otf in Resources */,
 				04C0135327301DAA00811B2C /* Search.storyboard in Resources */,
+				04C013B12733690600811B2C /* Setting.storyboard in Resources */,
 				04C0135127301D7700811B2C /* Content.storyboard in Resources */,
 				04C0135B27303E1900811B2C /* SpoqaHanSansNeo-Thin.otf in Resources */,
 				04C013842731323F00811B2C /* SearchTableViewCell.xib in Resources */,
@@ -265,9 +273,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				04C0134727301C9A00811B2C /* CalendarViewController.swift in Sources */,
+				04C013B32733694F00811B2C /* SettingViewController.swift in Sources */,
 				04C0134927301CA800811B2C /* SearchViewController.swift in Sources */,
 				04C0134527301C8500811B2C /* AddViewController.swift in Sources */,
-				04C0134B27301CB300811B2C /* SettingViewController.swift in Sources */,
 				04C013832731323F00811B2C /* SearchTableViewCell.swift in Sources */,
 				04C013722730CF4100811B2C /* RealmModel.swift in Sources */,
 				04C013312730173A00811B2C /* MainViewController.swift in Sources */,
@@ -512,6 +520,14 @@
 				kind = branch;
 			};
 		};
+		04C013B427336DE000811B2C /* XCRemoteSwiftPackageReference "Zip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/Zip";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -524,6 +540,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 04C013732730CFD100811B2C /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		04C013B527336DE000811B2C /* Zip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04C013B427336DE000811B2C /* XCRemoteSwiftPackageReference "Zip" */;
+			productName = Zip;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

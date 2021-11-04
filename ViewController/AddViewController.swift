@@ -7,11 +7,15 @@
 
 import UIKit
 import RealmSwift
+import MobileCoreServices //포토앨범,카메라기능도 쓸 수 있게 만들어주는 프레임워크
 
-class AddViewController: UIViewController {
+class AddViewController: UIViewController{
     
     static let identifier = "AddViewController"
     let localRealm = try! Realm()
+    let imagePickerVC: UIImagePickerController! = UIImagePickerController()
+    //선택된 이미지 데이터
+    var captureImage: UIImage!
     
     @IBOutlet weak var addImageView: UIImageView!
     
@@ -26,15 +30,19 @@ class AddViewController: UIViewController {
         
         let saveBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(isClickedSaveBtn))
         
+        let addImageButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(isClickedAddBtn))
+        
         self.navigationItem.leftBarButtonItem = backBarButtonItem
         
-        self.navigationItem.rightBarButtonItem = saveBarButtonItem
+        self.navigationItem.rightBarButtonItems = [saveBarButtonItem,addImageButtonItem]
         print("Realm is located at:", localRealm.configuration.fileURL!)
         
        
     }
     
-
+ 
+    
+    
     @objc func isClickedBackBtn (){
         navigationController?.dismiss(animated: true, completion: nil)
     }
@@ -101,9 +109,67 @@ class AddViewController: UIViewController {
     
     
     
-    @IBAction func clickedDateButton(_ sender: UIButton) {
+//    @IBAction func clickedDateButton(_ sender: UIButton) {
+//    }
+    
+    
+    
+}
+
+
+extension AddViewController:UIImagePickerControllerDelegate,UINavigationControllerDelegate {
+    
+    @objc func isClickedAddBtn(){
+        let alert = UIAlertController(title: "사진추가", message: "사진을 선택해주세요", preferredStyle: .actionSheet)
+       
+        let openCamera = UIAlertAction(title: "사진 촬영", style: .default){ action
+            in
+            self.imagePickerVC.sourceType = .camera
+            self.present(self.imagePickerVC, animated: true, completion: nil)
+           
+        }
+        let albumImage = UIAlertAction(title: "앨범에서 찾기", style: .default){ action
+            in
+            if(UIImagePickerController.isSourceTypeAvailable(.photoLibrary)){
+                self.imagePickerVC.delegate = self
+                self.imagePickerVC.sourceType = .photoLibrary
+                self.imagePickerVC.mediaTypes = [kUTTypeImage as String]
+                //잘라내기 편집 기능 지원
+                self.imagePickerVC.allowsEditing = true
+                
+            }else {
+                print("포토앨범에 접근할 수 없습니다")
+            }
+            
+        }
+        alert.addAction(openCamera)
+        alert.addAction(albumImage)
+       
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
+    //선택된 이미지를 받아오는 함수
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let mediaType = info[UIImagePickerController.InfoKey.mediaType] as! String
+        
+        if mediaType.isEqual(kUTTypeImage as NSString as String){
+            if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as?
+                UIImage {
+                addImageView.image = editedImage
+                captureImage = editedImage
+            } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+                addImageView.image = originalImage
+                captureImage = originalImage
+            }
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    //취소버튼 클릭시
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     
 }
