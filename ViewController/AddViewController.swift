@@ -23,6 +23,8 @@ class AddViewController: UIViewController{
     
     @IBOutlet weak var contentTextView: UITextView!
     
+    @IBOutlet weak var dateButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -50,17 +52,27 @@ class AddViewController: UIViewController{
 
  
     @objc func isClickedSaveBtn () {
-        let task = UserDiary(diaryTitle: titleLabel.text! , content: contentTextView.text!, writeDate: Date(), regDate: Date())
+        
+      
+//        let format = DateFormatter()
+//        format.dateFormat = "yyyy년 MM월 dd일"
+        
+//        let date =  dateButton.currentTitle!
+//        let value = format.date(from: date)!
+        
+        guard let date =  dateButton.currentTitle, let value = DateFormatter.customFormat.date(from: date) else {return}
+        
+        let task = UserDiary(diaryTitle: titleLabel.text! , content: contentTextView.text!, writeDate: value, regDate: Date())
 
         if let image = addImageView.image {
             try! localRealm.write {
                 localRealm.add(task)
-                saveImageToDocumentDirectory(imageName: "\(task._id).jpeg", image: image)
+                saveImageToDocumentDirectory(imageName: "\(task._id).jpg", image: image)
             }
         } else {
             try! localRealm.write{
                 localRealm.add(task)
-                saveImageToDocumentDirectory(imageName: "\(task._id)", image: UIImage(systemName: "photo")!)
+                saveImageToDocumentDirectory(imageName: "\(task._id).jpg", image: UIImage(systemName: "photo")!)
             }
         }
     
@@ -81,7 +93,7 @@ class AddViewController: UIViewController{
 //        guard let data = image.pngData() else { return }
                 
         
-        guard let data = image.jpegData(compressionQuality: 1) else { return }
+        guard let data = image.jpegData(compressionQuality: 0.3) else { return }
         
         
         //4.이미지 저장: 동일한 경로에 이미지를 저장하게 될 경우, 덮어쓰기
@@ -109,8 +121,41 @@ class AddViewController: UIViewController{
     
     
     
-//    @IBAction func clickedDateButton(_ sender: UIButton) {
-//    }
+    @IBAction func isClickedDateButton(_ sender: UIButton) {
+        
+        let alert = UIAlertController(title: "날짜 선택", message: "날짜를 선택해주세요", preferredStyle: .alert)
+        //얼럿 커스터마이징
+        //1.얼럿안에 안에 들어와서 그른가,,,
+        //2,,스토리보드 인식이 안되나 DatePickerViewController()
+        //3.스토리보드 씬 + 클래스 -> 화면 전환 코드
+        
+//        let contentView = DatePickerViewController()
+        
+        guard let contentView = self.storyboard?.instantiateViewController(withIdentifier: "DatePickerViewController")as? DatePickerViewController else {
+            print("DatePickerViewController error")
+            return
+        }
+        contentView.view.backgroundColor = .green
+//        contentView.preferredContentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height) //녹색괴물이 나온다~
+        contentView.preferredContentSize.height = 200
+        alert.setValue(contentView, forKey: "contentViewController")
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+        
+        let ok = UIAlertAction(title: "확인", style: .default){ _ in
+            
+            let format = DateFormatter()
+            format.dateFormat = "yyyy년 MM월 dd일"
+            let value = format.string(from: contentView.datePicker.date)
+            
+            //확인 버튼을 눌렀을 때 버튼의 타이틀 변경
+            self.dateButton.setTitle(value, for: .normal)
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: nil)
+    }
     
     
     
@@ -137,14 +182,16 @@ extension AddViewController:UIImagePickerControllerDelegate,UINavigationControll
                 //잘라내기 편집 기능 지원
                 self.imagePickerVC.allowsEditing = true
                 
-            }else {
+            } else {
                 print("포토앨범에 접근할 수 없습니다")
             }
-            
         }
+        
+        let cancel = UIAlertAction(title: "취소", style: .cancel, handler:nil)
+        
         alert.addAction(openCamera)
         alert.addAction(albumImage)
-       
+        alert.addAction(cancel)
         
         self.present(alert, animated: true, completion: nil)
     }

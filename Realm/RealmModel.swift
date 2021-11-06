@@ -12,6 +12,7 @@ import RealmSwift
 //Table 이름
 //@Persisted 컬럼
 class UserDiary: Object {
+    
     @Persisted var diaryTitle: String = "" // 제목: 필수
     @Persisted var content: String? = "" // 내용 : 옵션
     @Persisted var writeDate = Date() //작성 날짜: 필수
@@ -20,7 +21,7 @@ class UserDiary: Object {
     
     
    //PK(필수) ObjectID 사용
-    @Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted(primaryKey: true) var _id: ObjectId // AutoIncreasement
    
     convenience init(diaryTitle:String, content:String?, writeDate:Date, regDate:Date){
         self.init()

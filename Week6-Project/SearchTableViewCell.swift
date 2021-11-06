@@ -24,23 +24,23 @@ class SearchTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func prepareForReuse() {
-         super.prepareForReuse()
-         self.contentLabel.text = nil
-         self.titleLabel.text = nil
-      
-         self.updateLayout()
-     }
+//    override func prepareForReuse() {
+//         super.prepareForReuse()
+//         self.contentLabel.text = nil
+//         self.titleLabel.text = nil
+//
+//         self.updateLayout()
+//     }
      
-     func updateLayout(){
-         self.setNeedsLayout()
-         self.layoutIfNeeded()
-     }
+//     func updateLayout(){
+//         self.setNeedsLayout()
+//         self.layoutIfNeeded()
+//     }
     
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        self.translatesAutoresizingMaskIntoConstraints = false
+//        self.translatesAutoresizingMaskIntoConstraints = false
         // Configure the view for the selected state
     }
     

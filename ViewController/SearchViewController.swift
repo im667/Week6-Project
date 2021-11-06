@@ -26,23 +26,24 @@ class SearchViewController: UIViewController {
         SearchTableView.delegate = self
         SearchTableView.dataSource = self
     
-        SearchTableView.estimatedRowHeight = 150
-        SearchTableView.rowHeight = UITableView.automaticDimension
+//        SearchTableView.estimatedRowHeight = 150
+//        SearchTableView.rowHeight = UITableView.automaticDimension
         
         tasks = localRealm.objects(UserDiary.self)
+        
     
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidLoad()
         tasks = localRealm.objects(UserDiary.self)
-        
-        
+ 
         SearchTableView.reloadData()
+        print(tasks!)
     }
     
     //폴더경로 -> 이미지찾기->UIImage ->UIimageView
-    func loadImageFromDocumentDiretory(imageName:String) -> UIImage? {
+    func loadImageFromDocuments(imageName:String) -> UIImage? {
         let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
         let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
         let path = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
@@ -55,7 +56,7 @@ class SearchViewController: UIViewController {
         return nil
     }
 
-    func deleteImageFromDocumentDirectory( imageName:String ){
+    func deleteImageFromDocuments( imageName:String ){
         //1. Desktop/user/mac~~~~~/folder/222.png
         guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         
@@ -85,8 +86,8 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UITableViewDelegate,UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-           return 1
-       }
+            return 1
+        }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        return tasks.count
@@ -97,17 +98,22 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for:indexPath)as? SearchTableViewCell else {
             return UITableViewCell()
         }
+        
         let row = tasks[indexPath.row]
 
-        cell.contentImage.image = loadImageFromDocumentDiretory(imageName:"\(row._id).jpg")
+//        cell.contentImage.image = loadImageFromDiskWith(fileName:"\(row._id).jpg")
+        cell.contentImage.image = loadImageFromDocuments(imageName: "\(row._id).jpg")
         
         cell.titleLabel.text = row.diaryTitle
         cell.contentLabel.text = row.content
+        
+        let format = DateFormatter()
+        format.dateFormat = "yyyy년 MM월 dd일"
         cell.dateLabel.text = "\(row.writeDate)"
 
-        cell.titleLabel.sizeToFit()
-        cell.contentLabel.sizeToFit()
-        cell.dateLabel.sizeToFit()
+//        cell.titleLabel.sizeToFit()
+//        cell.contentLabel.sizeToFit()
+//        cell.dateLabel.sizeToFit()
         cell.contentImage.sizeToFit()
         
         return cell
@@ -117,7 +123,9 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource {
         return true
     }
     
-  
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return 300
+        }
 
 
     
@@ -125,20 +133,22 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource {
         
         let row = tasks[indexPath.row]
         try! localRealm.write {
+           
+            deleteImageFromDocuments(imageName: "\(row._id).jpg")
             localRealm.delete(row)
-            deleteImageFromDocumentDirectory(imageName: "\(row._id).jpg")
+            
             SearchTableView.reloadData()
         }
     }
     //본래는 화면전환  + 값 전달 후 새로운 화면에서 수정이 적합
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let taskToUpdate = tasks[indexPath.row]
+//        let taskToUpdate = tasks[indexPath.row]
 //         수정 - 레코드에 대한 값
-        try! localRealm.write{
-            taskToUpdate.diaryTitle = "수정해봅시다"
-            taskToUpdate.content = "수정을 한다"
-            SearchTableView.reloadData()
-        }
+//        try! localRealm.write{
+//            taskToUpdate.diaryTitle = "수정해봅시다"
+//            taskToUpdate.content = "수정을 한다"
+//            SearchTableView.reloadData()
+//        }
 //        일괄수정
 //        try! localRealm.write{
 //            tasks.setValue(Date(), forKey: "writeDate")
@@ -156,6 +166,19 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource {
 //            localRealm.create(UserDiary.self, value: ["_id":taskToUpdate._id, "diaryTitle":"얘만바꾸고시펐어"], update: .modified)
 //            SearchTableView.reloadData()
 //        }
+        
+//        let sb = UIStoryboard(name: "Search", bundle: nil)
+//                
+//                guard let vc = sb.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController else { return }
+//                
+//                let row = tasks[indexPath.row]
+//                
+//                vc.task = row
+//                
+//                
+//                self.navigationController?.pushViewController(vc, animated: true)
+//                
+        
     }
     
     
