@@ -109,7 +109,9 @@ extension SearchViewController: UITableViewDelegate,UITableViewDataSource {
         
         let format = DateFormatter()
         format.dateFormat = "yyyy년 MM월 dd일"
-        cell.dateLabel.text = "\(row.writeDate)"
+        cell.dateLabel.text = format.string(from: row.writeDate)
+        
+       
 
 //        cell.titleLabel.sizeToFit()
 //        cell.contentLabel.sizeToFit()

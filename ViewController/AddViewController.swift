@@ -54,13 +54,15 @@ class AddViewController: UIViewController{
     @objc func isClickedSaveBtn () {
         
       
-//        let format = DateFormatter()
-//        format.dateFormat = "yyyy년 MM월 dd일"
+        let format = DateFormatter()
+        format.dateFormat = "yyyy년 MM월 dd일"
         
 //        let date =  dateButton.currentTitle!
 //        let value = format.date(from: date)!
         
-        guard let date =  dateButton.currentTitle, let value = DateFormatter.customFormat.date(from: date) else {return}
+        
+        
+        guard let date =  dateButton.currentTitle, let value = format.date(from: date) else {return}
         
         let task = UserDiary(diaryTitle: titleLabel.text! , content: contentTextView.text!, writeDate: value, regDate: Date())
 
